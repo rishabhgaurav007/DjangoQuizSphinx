@@ -1,5 +1,5 @@
-###Django quiz app
+#Django quiz app
 ##Build Status
 
-#This is a configurable quiz app for Django.
+###This is a configurable quiz app for Django.
 
