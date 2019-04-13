@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://drive.google.com/open?id=1hDHvuyO5vL7sRAedykYNDzScgoqAMQEe">
+    <link rel="icon" href="https://drive.google.com/open?id=1hDHvuyO5vL7sRAedykYNDzScgoqAMQEe" type="image/x-icon">
+    <title >{% block title %}Sphinx{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'quiz/js/timer.js' %}"></script>
+
+</head>
+<!-- onload function is evoke when page is load -->
+<!--countdown function is called when page is loaded -->
+
+<body onload="countdown();"><br>
+    <br>
+    <br>
+	<div>
+		Time Left ::
+		<input type="text" id="minutes"/> :
+
+		<input id="seconds" type="text" style="width: 20px;
+						border: none; font-size: 16px;
+						font-weight: bold; color: black;"/>
+	</div>
+</body>
+
+</html>
+

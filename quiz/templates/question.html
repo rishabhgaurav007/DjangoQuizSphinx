@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load i18n%}
+
+{% block title %} {{ quiz.title }} {% endblock %}
+{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+<head>
+
+</head>
+{% block body %}
+    <body class="text-center"><br>
+    <br>
+    <br>
+            <div class="align-middle" >
+
+    <div  class="col-sm-4 col-md-3">
+{% if previous.answers %}
+
+  <p class="muted"><small>{% trans "The previous question" %}:</small></p>
+  <p>{{ previous.previous_question }}</p>
+
+  {% if previous.previous_outcome %}
+	<div class="alert alert-success">
+  {% else %}
+	<div class="alert alert-warning">
+  {% endif %}
+  	  <p><small>
+		{% trans "Your answer was" %} </small>
+		<strong>
+		  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
+		</strong>
+	  </p>
+
+	</div>
+
+	{% include 'correct_answer.html' %}
+
+	<p><strong>{% trans "Explanation" %}:</strong></p>
+	<div class="well " style="background-color: #fcf8e3;">
+	  <p>{{ previous.previous_question.explanation }}</p>
+	</div>
+
+	<hr>
+
+{% endif %}
+
+<br>
+<div class="bg-text3">
+{% if question %}
+    <div>
+    </div>
+
+    {% if progress %}
+
+    <div>
+    {% trans "Question" %} {{ progress.0|add:1 }} {% trans "of" %} {{ progress.1 }}
+    </div>
+        <br>
+    {% endif %}
+
+    <p>
+      <small class="muted">{% trans "Question category" %}:</small>
+      <strong>{{ question.category }}</strong>
+    </p>
+    <p class="lead">{{ question.content }}</p>
+    {% if question.question_link != '0'%}
+        <a href="{{ question.question_link }}">LINK </a>
+    {% endif %}
+    {% if question.figure %}
+        <img height="200px" width="266px"  src="{{ question.figure.url }}" alt="{{ question.content }}" />
+
+    {% endif %}
+<br>
+    <hr>
+    <form action="" method="POST">{% csrf_token %}
+      <input type=hidden name="question_id" value="{{ question.id }}">
+
+      <ul class="list-group">
+
+        {% for answer in form.answers %}
+          <li class="list-group-item">
+            {{ answer }}
+          </li>
+        {% endfor %}
+
+
+      </ul>
+        {% if progress.0|add:1 == progress.1 %}
+        <input type="submit" value={% trans "Submit" %} class="btn btn-large btn-block btn-warning" >
+        {% else %}
+            <input type="submit" value={% trans "Next" %} class="btn btn-large btn-block btn-warning" >
+        {% endif %}
+    </form>
+
+
+
+{% endif %}
+
+<hr>
+        </div>
+        </div>
+            </div>
+    </body>
+{% endblock %}

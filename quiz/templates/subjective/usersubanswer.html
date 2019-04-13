@@ -1,0 +1,73 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+    <head>
+    <title>Leaderboard</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+
+     <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: floralwhite;
+}
+        tr:nth-child(odd) {
+  background-color: lemonchiffon;
+}
+</style>
+    </head>
+    <body><br>
+    <br>
+    <br>
+    <div>
+    <table style="width:100%">
+    <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Marks</th>
+        <th>Marks you give</th>
+    </tr>
+        <div>
+        <p style="background-color: cadetblue">User::{{ uas }}</p>
+        {% for i in answer %}
+            <form action="{% url 'subjective:updatemarks' i.pk %}" method="GET">
+            <tr>
+                <td>{{ i.question }}</td>
+                <td>{{ i.ans_text }}</td>
+                <td>{{ i.question.marks }}</td>
+                <td><input name="marks" type="text" class="form-control" placeholder="{{ i.answermarks }}"></td>
+                {% if i.answermarks == 0 %}
+                <td> <input class="bottom-left" type="submit" value="Submit this score"/></td>
+                {% endif %}
+            </tr>
+            </form>
+        {% endfor %}
+        </div>
+    <div class="bottom">
+
+    </div>
+    </table>
+    </div>
+    </body>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Quizzes related to" %} {{ category.category }}{% endblock %}
+
+{% block body %}<br>
+    <br>
+    <br>
+<h1>{% trans "Quizzes in the" %} <strong>{{ category.category }} </strong>{% trans "category" %}</h1>
+
+  {% with object_list as quizzes %}
+    {% if quizzes %}
+        <ul>
+        {% for quiz in quizzes %}
+            {% if quiz.category.category == "MCQ" %}
+                <li>
+                <button type="button" class="btn btn-primary" onclick="location.href='{% url 'quiz:quiz_question' quiz_name=quiz.url %}'">{{ quiz.title }}</button>
+                </li>
+            {% elif quiz.category.category == "SUBJECTIVE" %}
+                <li>
+                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'subjective:first' %}'">{{ quiz.title }}</button>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans "There are no quizzes" %}</p>
+    {% endif %}
+  {% endwith %}
+{% endblock %}

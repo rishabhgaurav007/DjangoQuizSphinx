@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body %}
+<head>
+  <title>Leaderboard</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: floralwhite;
+}
+        tr:nth-child(odd) {
+  background-color: lemonchiffon;
+}
+</style>
+</head>
+
+<body><br>
+    <br>
+    <br>
+<div class="alert alert-danger">
+  <strong>INFO!</strong> No User Has Submitted any question or marks has not been alloted.
+</div>
+<div class="container-fluid">
+    <table>
+    <tr style="background-color:chocolate">
+        <th>Rank</th>
+        <th>UserName</th>
+        <th>Marks</th>
+    </tr>
+
+    </table>
+</div>
+</body>
+
+{% endblock %}

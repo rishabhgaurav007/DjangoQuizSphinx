@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}<br>
+    <br>
+    <br>
+    <h3>Welcome {{ user.username }}</h3>
+    <h4>The Quiz is Over</h4><br>
+    <br>
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'quiz:quiz_category_list_all'  %}'">{{ cat.category }}
+        Quiz List</button>
+    <br>
+    {% if user.is_authenticated %}
+        {% for b in a %}
+            <p>
+            {{ b.ans_text  }} by {{ b.user_ans }}
+            </p>
+
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}

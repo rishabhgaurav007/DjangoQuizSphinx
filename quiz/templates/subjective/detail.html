@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+{% block title %}{{ question.pk }}{% endblock %}
+{% block questions_active %}active{% endblock %}
+{% block body %}
+<div style="font-weight: bold" id="quiz-time-left"></div>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://drive.google.com/open?id=1hDHvuyO5vL7sRAedykYNDzScgoqAMQEe">
+    <link rel="icon" href="https://drive.google.com/open?id=1hDHvuyO5vL7sRAedykYNDzScgoqAMQEe" type="image/x-icon">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+    <script src="{% static 'quiz/js/timer.js' %}"></script>
+
+</head>
+
+<br>
+    <br>
+    <br>
+<div class="container-fluid songs-container">
+    <div class="col-sm-4 col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% if questionsub.content %}
+                    <pre>Q{{ questionsub.pk }}. {{ questionsub.content }}</pre>
+                {% else %}
+                    <h3>No Question to display</h3>
+                {% endif %}
+                {% if questionsub.figure %}
+                    <div class="panel-body" >
+                        <img src="{{ questionsub.figure.url }}" class="img-responsive" >
+                    </div>
+
+                {% endif %}
+                {% if question.ques_link %}
+                    <div class="panel-default" >
+                        <a href="{{ questionsub.category }}">link</a>
+                    </div>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <form action="{% url 'subjective:ques_ans' questionsub.id %}" class="form-horizontal" method="post">
+        {% csrf_token %}
+        <input name="answer" type="text" class="form-control" placeholder="Enter Answer">
+        <button type="submit" class="btn btn-primary">Submit</button> <!-- jo input wala hai wohi post me pass ho rha through submit button-->
+    </form>
+</div>
+
+{% endblock %}

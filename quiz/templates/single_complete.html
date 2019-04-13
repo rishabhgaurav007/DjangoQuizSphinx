@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+	{% load i18n %}
+	
+	{% load quiz_tags %}
+	
+	{% block title %} {{ quiz.title }} {% endblock %}
+	{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+	
+	{% block body %}<br>
+    <br>
+    <br>
+	<button type="button" class="btn btn-primary" onclick="location.href='{% url 'quiz:quiz_category_list_all'  %}'">{{ cat.category }}
+        Quiz List</button>
+	
+        {% if user.is_authenticated %}
+            <p>{% trans "You have already sat this exam and only one sitting is permitted" %}.</p>
+        {% else %}
+            <p>{% trans "This exam is only accessible to signed in users" %}.</p>
+        {% endif %}
+	
+	{% endblock %}

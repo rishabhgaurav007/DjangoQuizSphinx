@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "All Quizzes" %}{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <h2> Category list </h2>
+
+<ul>
+  {% for cat in category_list %}
+  <li>
+        <button type="button" class="btn btn-primary" onclick="location.href='{% url 'quiz:quiz_category_list_matching' category_name=cat.category %}'">{{ cat.category }}
+        </button>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

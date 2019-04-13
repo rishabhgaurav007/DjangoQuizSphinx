@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}<br>
+    <br>
+    <br>
+<div class="question-container container-fluid" >
+    <div class="col-sm-12">
+        <h3>Hello {{ user.username }}'</h3>
+    </div>
+    <div class="col-sm-6 col-sm-offset-3">
+  <div class="panel panel-default">
+    <pre>
+        <h2>Rules & Regulations:</h2>
+        1.All Questions Are Compulsory.
+        2.You Cannot Submit Answer twice.
+            Subjective- first submission will only be accepted and updated.
+        3.Admin decision is final.
+        4.Electronic gadgets are prohibited.
+        5.All the Best!
+    </pre>
+  </div>
+        <div class="col-sm-12" align="right">
+            <br>
+
+                <button onclick="location.href='{% url 'quiz:quiz_category_list_all'  %}'" type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-arrow-right"></span>&nbsp; Start Quiz
+                </button>
+            </a>
+        </div>
+</div>
+</div>
+{% endblock %}
